@@ -58,6 +58,8 @@ export class AppComponent {
   h6Count = 0;
   hasSingleH1 = false;
 
+  activeSection = 'dashboard';
+
   constructor(private seoService: SeoService) {}
 
   AnalyzeWebsite(): void {
@@ -201,7 +203,7 @@ export class AppComponent {
         this.descriptionStatus =
           this.descriptionLength === 0
             ? 'Missing meta description'
-            : this.descriptionLength < 70
+            : this.descriptionLength < 120
               ? 'Description may be too short'
               : this.descriptionLength > 160
                 ? 'Description may be too long'
@@ -273,4 +275,9 @@ export class AppComponent {
 
     return 'Needs attention';
   }
+
+  navigateTo(section: string): void {
+    this.activeSection = section;
+  }
 }
+

@@ -6,22 +6,56 @@
       <span>SEO<span class="brand-accent">Lens</span></span>
     </div>
 
-    <div class="nav-label">MAIN</div>
-    <a class="nav-item active">▦ &nbsp; Dashboard</a>
+    
+<div class="nav-label">MAIN</div>
+<a class="nav-item"
+   [class.active]="activeSection === 'dashboard'"
+   (click)="navigateTo('dashboard')">
+  ▦ &nbsp; Dashboard
+</a>
 
-    <div class="nav-label">SITES</div>
-    <a class="nav-item">⌕ &nbsp; Site Audit</a>
-    <a class="nav-item">✎ &nbsp; Page Optimizer</a>
-    <a class="nav-item">▤ &nbsp; Content Optimizer</a>
+<div class="nav-label">SITES</div>
+<a class="nav-item"
+   [class.active]="activeSection === 'site-audit'"
+   (click)="navigateTo('site-audit')">
+  ⌕ &nbsp; Site Audit
+</a>
+<a class="nav-item"
+   [class.active]="activeSection === 'page-optimizer'"
+   (click)="navigateTo('page-optimizer')">
+  ✎ &nbsp; Page Optimizer
+</a>
+<a class="nav-item"
+   [class.active]="activeSection === 'content-optimizer'"
+   (click)="navigateTo('content-optimizer')">
+  ▤ &nbsp; Content Optimizer
+</a>
 
-    <div class="nav-label">RESEARCH</div>
-    <a class="nav-item">⌕ &nbsp; Keyword Research</a>
+<div class="nav-label">RESEARCH</div>
+<a class="nav-item"
+   [class.active]="activeSection === 'keyword-research'"
+   (click)="navigateTo('keyword-research')">
+  ⌕ &nbsp; Keyword Research
+</a>
 
-    <div class="nav-label">CONFIG</div>
-    <a class="nav-item">⚙ &nbsp; Settings</a>
+<div class="nav-label">CONFIG</div>
+<a class="nav-item"
+   [class.active]="activeSection === 'settings'"
+   (click)="navigateTo('settings')">
+  ⚙ &nbsp; Settings
+</a>
+
   </aside>
 
   <main class="dashboard">
+    <div *ngIf="activeSection !== 'dashboard' && activeSection !== 'site-audit'"
+     class="empty-state">
+  <div class="empty-icon">⌕</div>
+  <h2>{{ activeSection | titlecase }}</h2>
+  <p>This section is coming soon.</p>
+</div>
+
+<div *ngIf="activeSection === 'dashboard' || activeSection === 'site-audit'">
     <header class="topbar">
       <span class="site-selector">◎ &nbsp; Site Audit</span>
 
@@ -344,5 +378,6 @@
       <h2>Ready to audit your website?</h2>
       <p>Enter a website URL above and select Run Audit to view your SEO dashboard.</p>
     </section>
+    </div>
   </main>
 </div>
